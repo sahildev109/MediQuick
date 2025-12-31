@@ -1,12 +1,16 @@
+import AdminSidebar from "../components/AdminSidebar";
+
 const orders = [
   { id: "ORD101", customer: "Sahil", status: "Pending" },
   { id: "ORD102", customer: "Amit", status: "Accepted" },
 ];
 
-export default function Orders() {
+export default function AdminOrders() {
   return (
-    <div className="p-6">
-      <h1 className="text-2xl font-bold mb-6">Orders</h1>
+    <div className=" flex justify-between gap-2 ">
+      <AdminSidebar/>
+      <div className="flex-1">
+      <h1 className="text-2xl font-bold mb-6 text-center mt-6">Orders</h1>
 
       <div className="space-y-4">
         {orders.map((order) => (
@@ -28,6 +32,7 @@ export default function Orders() {
             </select>
           </div>
         ))}
+      </div>
       </div>
     </div>
   );

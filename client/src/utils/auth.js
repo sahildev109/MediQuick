@@ -10,3 +10,10 @@ export const logout = () => {
 
 
 };
+export const logoutAdmin = () => {
+   
+    localStorage.removeItem("user");
+    localStorage.removeItem("medicinesNO");
+
+
+};

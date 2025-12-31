@@ -1,22 +1,41 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import MedicineCard from "../components/MedicineCard";
+import { getMed } from "../services/medicine.service";
 
-const medicinesData = [
-  { id: 1, name: "Paracetamol", price: 50 },
-  { id: 2, name: "Vitamin C", price: 120 },
-  { id: 3, name: "Cough Syrup", price: 90 },
-  { id: 4, name: "Aspirin", price: 60 },
-];
+// const medicinesData = [
+//   { id: 1, name: "Paracetamol", price: 50 },
+//   { id: 2, name: "Vitamin C", price: 120 },
+//   { id: 3, name: "Cough Syrup", price: 90 },
+//   { id: 4, name: "Aspirin", price: 60 },
+// ];
 
 export default function Home() {
+const [medicinesData,setMedicinesData]=useState([])
+
   const [searchQuery, setSearchQuery] = useState("");
+
+  
+  
+  useEffect(()=>{
+    const fetchMedicineData=async()=>{
+      try {
+        const res=await getMed();
+      setMedicinesData(res);
+      } catch (error) {
+        console.log(error)
+      }
+    }
+
+    fetchMedicineData();    
+    
+  },[])
 
   const filteredMedicines = medicinesData.filter((med) =>
     med.name.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
   return (
-    <div className="p-6 px-18 h-screen bg-[url(/image.png)]" style={{backgroundColor:'#1c3c71'}}>
+    <div className="p-6 px-18 h-screen bg-[url(/image.png)] bg-repeat" style={{backgroundColor:'#1c3c71'}}>
       {/* Search Bar */}
       <input
         type="text"

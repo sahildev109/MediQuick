@@ -11,6 +11,7 @@ export default function Login() {
   const [email,setEmail]=useState('')
   const [password,setPassword]=useState('')
   const navigate= useNavigate();
+  const [incorrectPass, setIncorrectPass]=useState(false)
   
 
 const handleSubmit = async (e) => {
@@ -23,10 +24,18 @@ const handleSubmit = async (e) => {
     // ✅ Remember user
     localStorage.setItem("user", JSON.stringify(res.user));
 
+    if(res.user.role==='admin'){
+      navigate("/admin");
+    }else{
+      
     // redirect
     navigate("/");
+    }
   } catch (err) {
     setError(err.response?.data?.message || "Login failed");
+   if(err.status===401){
+    setIncorrectPass(true)
+   }
     console.log(err)
   }
 };
@@ -98,6 +107,8 @@ const handleSubmit = async (e) => {
                name="password"
               onChange={(e)=>setPassword(e.target.value)}
             />
+          
+{incorrectPass && (<p className="text-red-600 text-center">Incorrect Credentials !</p>)}
 
             <button
               className="w-full text-white py-3 rounded-lg"

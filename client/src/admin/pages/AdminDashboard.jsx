@@ -2,13 +2,13 @@ import AdminSidebar from "../components/AdminSidebar";
 
 export default function AdminDashboard() {
   return (
-    <div className="p-6 ">
-      <h1 className="text-2xl font-bold mb-4">Admin Dashboard</h1>
+    <div className=" ">
+      {/* <h1 className="text-2xl font-bold mb-4">Admin Dashboard</h1> */}
       <div className="flex justify-between">
       <AdminSidebar/>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 flex-1">
-        <StatCard title="Total Products" value="12" />
+        <StatCard title="Total Products" value={localStorage.getItem('medicinesNO')} />
         <StatCard title="Pending Orders" value="5" />
         <StatCard title="Delivered Orders" value="42" />
       </div>

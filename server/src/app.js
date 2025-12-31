@@ -1,6 +1,7 @@
 import express from "express";
 import cors from "cors";
 import authRoutes from "./routes/auth.routes.js";
+import medicineRoutes from "./routes/medicine.routes.js";
 
 const app = express();
 
@@ -13,5 +14,6 @@ app.use(
 app.use(express.json());
     
 app.use("/api/auth", authRoutes);
+app.use("/api/medicines", medicineRoutes);
 
 export default app;
