@@ -35,7 +35,10 @@ const [medicinesData,setMedicinesData]=useState([])
   );
 
   return (
-    <div className="p-6 px-18 h-screen bg-[url(/image.png)] bg-repeat" style={{backgroundColor:'#1c3c71'}}>
+    <div className="p-6 px-18 min-h-screen
+        bg-[url(/image.png)]
+        bg-repeat
+        bg-top" style={{backgroundColor:'#1c3c71'}}>
       {/* Search Bar */}
       <input
         type="text"

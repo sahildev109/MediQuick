@@ -28,10 +28,11 @@ export default function MedicineCard({ medicine }) {
   };
 
   return (
-    <div className="bg-white p-4 rounded-xl shadow transition hover:scale-[1.02]">
-      <h2 className="font-semibold text-lg">{medicine.name}</h2>
+    <div className="bg-white p-4 rounded-xl shadow transition hover:scale-[1.02] h-110 w-110">
+      <h2 className="font-bold text-lg text-[#1c3c71]">{medicine.name}</h2>
+      <img src={medicine.image} alt="someimg" className="h-70 w-auto"/>
       <p className="text-sm text-gray-600">{medicine.description}</p>
-      <p className="text-gray-500">₹{medicine.price}</p>
+      <p className="text-[#1c3c71]">₹{medicine.price}</p>
 
       <button
         className="mt-4 w-full bg-[#467f95] text-white py-2 rounded-lg hover:cursor-pointer hover:bg-[#88ceba]"

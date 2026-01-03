@@ -1,3 +1,4 @@
+import cloudinary from "../config/cloudinary.js";
 import Medicine from "../models/Medicine.model.js";
 
 /**
@@ -5,21 +6,29 @@ import Medicine from "../models/Medicine.model.js";
  */
 export const addMedicine = async (req, res) => {
   try {
-    const { name, price, stock, description } = req.body;
+    const { name, description, price, stock } = req.body;
 
-    // Validation
-    if (!name || !price || !stock) {
-      return res.status(400).json({
-        message: "Name, price and stock are required",
-      });
+    if (!name || !price || !stock || !req.file) {
+      return res.status(400).json({ message: "All fields required" });
     }
+
+    // Upload to Cloudinary
+    const uploadResult = await new Promise((resolve, reject) => {
+      cloudinary.uploader.upload_stream(
+        { folder: "medicines" },
+        (error, result) => {
+          if (error) reject(error);
+          resolve(result);
+        }
+      ).end(req.file.buffer);
+    });
 
     const medicine = await Medicine.create({
       name,
+      description,
       price,
       stock,
-      description
-   
+      image: uploadResult.secure_url,
     });
 
     res.status(201).json({

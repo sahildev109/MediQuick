@@ -1,9 +1,13 @@
 import api from "../config/axios";
-export const addMedAPI = async (formData) => {
+export const addMedAPI = async(data) =>{
+  const response = await api.post("/medicines", data, {
+    headers: {
+      "Content-Type": "multipart/form-data",
+    },
+  });
+return response.data;
+}
 
-  const response = await api.post("/medicines", formData);
-  return response.data;
-};
 
 export const getMedAPI = async () => {
 

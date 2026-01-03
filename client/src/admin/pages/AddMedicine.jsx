@@ -5,24 +5,43 @@ import { addMed } from "../../services/medicine.service";
 export default function AddMedicine() {
 const [name, setName]=useState("");
 const [description ,setDesc]=useState('');
-const [price, setPrice]=useState(0);
-const [stock, setStock]=useState(0);
+const [price, setPrice]=useState(null);
+const [stock, setStock]=useState(null);
+const [image, setImage] = useState(null);
+const [loading, setLoading]=useState(false);
+const [preview, setPreview] = useState(null);
 
-const handleAddMedicine=async(e)=>{
-e.preventDefault();
-try {
-    const res = await addMed({name,description,price,stock})
-    console.log(res)
-    alert(res.message)
-    setName("")
-    setDesc("")
-    setPrice(0)
-    setStock(0)
-   
-} catch (error) {
-  console.log(error)
-}
-}
+
+const handleAddMedicine = async (e) => {
+  e.preventDefault();
+  setLoading(true);
+
+  try {
+
+    const formData = new FormData();
+    formData.append("name", name);
+    formData.append("description", description);
+    formData.append("price", price);
+    formData.append("stock", stock);
+    formData.append("image", image);
+
+    const res = await addMed(formData);
+
+    alert(res.message);
+
+    setName("");
+    setDesc("");
+    setPrice(0);
+    setStock(0);
+    setImage(null);
+    setPreview(null);
+
+  } catch (error) {
+    console.log(error);
+  }finally{
+    setLoading(false)
+  }
+};
 
 
   return (
@@ -40,10 +59,55 @@ try {
         value={price}/>
         <input placeholder="Stock" type="number" className="w-full p-3 border rounded" onChange={(e)=>setStock(e.target.value)}
         value={stock}/>
+        {preview && (
+  <div className="mt-3">
+    <p className="text-sm text-gray-500 mb-1">Image Preview</p>
+    <img
+      src={preview}
+      alt="Medicine preview"
+      className="h-40 w-full object-contain rounded border"
+    />
+  </div>
+)}
+  <div className="w-full">
+  {/* Hidden native input */}
+  <input
+    type="file"
+    accept="image/*"
+    id="medicine-image"
+    className="hidden"
+    onChange={(e) => {
+      const file = e.target.files[0];
+      setImage(file);
+
+      if (file) {
+        setPreview(URL.createObjectURL(file));
+      }
+    }}
+  />
+
+  {/* Custom UI */}
+  <label
+    htmlFor="medicine-image"
+    className="
+      flex items-center justify-center gap-3
+      w-full px-4 py-3
+      border-2 border-dashed border-gray-300
+      rounded-lg cursor-pointer
+      text-gray-600
+      hover:border-[#1c3c71]
+      hover:text-[#1c3c71]
+      transition
+    "
+  >
+    📷 <span>{image ? image.name : "Click to upload medicine image"}</span>
+  </label>
+</div>
+
 
         <button className="bg-[#1c3c71] text-white w-full py-3 rounded-lg"
         onClick={handleAddMedicine}>
-          Add Medicine
+         {loading? 'Adding Medicine , Please Wait ....': 'Add Medicine' }
         </button>
       </form>
       </div>

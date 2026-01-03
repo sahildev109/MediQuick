@@ -1,4 +1,5 @@
 import express from "express";
+import upload from "../middlewares/multer.js";
 import {
   addMedicine,
   getAllMedicines,
@@ -6,7 +7,7 @@ import {
 
 const router = express.Router();
 
-router.post("/", addMedicine);     // add medicine
+router.post("/", upload.single("image"), addMedicine);   // add medicine
 router.get("/", getAllMedicines);  // list medicines
 
 export default router;

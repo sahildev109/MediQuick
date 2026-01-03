@@ -22,6 +22,10 @@ const medicineSchema = new mongoose.Schema(
       type: Number,
       required: true,
     },
+    image: {
+  type: String, // Cloudinary URL
+  required: true,
+},
     isActive: {
       type: Boolean,
       default: true, // useful to disable medicine later
