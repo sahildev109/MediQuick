@@ -12,6 +12,7 @@ import AdminDashboard from "./admin/pages/AdminDashboard";
 import AddMedicine from "./admin/pages/AddMedicine";
 import Inventory from "./admin/pages/Inventory";
 import AdminOrders from "./admin/pages/Orders";
+import CompleteProfile from "./pages/CompleteProfile";
 
 export default function App() {
    const location = useLocation();
@@ -21,7 +22,9 @@ export default function App() {
     location.pathname==="/admin"||
     location.pathname==="/admin/add-medicine"||
     location.pathname==="/admin/inventory"||
-    location.pathname==="/admin/orders"
+    location.pathname==="/admin/orders"||
+    location.pathname==="/complete-profile"
+
   return (
     <>
     <ClickSpark
@@ -48,6 +51,7 @@ export default function App() {
 <Route path="/admin/add-medicine" element={<AddMedicine/>}/>
 <Route path="/admin/inventory" element={<Inventory/>}/>
 <Route path="/admin/orders" element={<AdminOrders/>}/>
+<Route path="/complete-profile" element={<CompleteProfile/>}/>
 
 
       </Routes>

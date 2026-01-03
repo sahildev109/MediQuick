@@ -11,17 +11,17 @@ const userSchema = new mongoose.Schema(
     gender: {
       type: String,
       enum: ["Male", "Female", "Other"],
-      required: true,
+       default: null
     },
 
     phone: {
       type: String,
-      required: true,
+     default: null
     },
 
     address: {
       type: String,
-      required: true,
+       default: null
     },
 
     email: {
@@ -41,6 +41,10 @@ const userSchema = new mongoose.Schema(
       enum: ["customer", "admin"],
       default: "customer",
     },
+      isProfileComplete: {
+    type: Boolean,
+    default: false,
+  },
   },
   { timestamps: true }
 );

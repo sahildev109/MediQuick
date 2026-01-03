@@ -113,3 +113,65 @@ export const signup = async (req, res) => {
     res.status(500).json({ message: "Server error" });
   }
 };
+
+
+
+export const googleAuth = async (req, res) => {
+  try {
+    const { name, email, photo } = req.body;
+
+    if (!email) {
+      return res.status(400).json({ message: "Invalid Google user" });
+    }
+
+    let user = await User.findOne({ email });
+
+    if (!user) {
+      user = await User.create({
+        name,
+        email,
+        password: "GOOGLE_AUTH",
+        role: "customer",
+      });
+    }
+
+    
+  const isProfileComplete =
+    user.phone && user.address && user.gender;
+
+    res.status(200).json({
+      message: "Google login success",
+      user: {
+        id: user._id,
+        name: user.name,
+        email: user.email,
+        role: user.role,
+        gender:user.gender||null,
+           phone:user.phone||null,
+           address:user.address||null,
+            isProfileComplete,
+      },
+    });
+  } catch (error) {
+    res.status(500).json({ message: "Google auth failed" });
+  }
+};
+
+
+export const completeProfile = async (req, res) => {
+  const { userId, phone, address, gender } = req.body;
+
+  const user = await User.findByIdAndUpdate(
+    userId,
+    {
+      phone,
+      address,
+      gender,
+      isProfileComplete: true,
+    },
+    { new: true }
+  );
+
+  res.json({ user });
+};
+

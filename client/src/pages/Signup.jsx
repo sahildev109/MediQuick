@@ -3,6 +3,11 @@ import LightPillar from "../components/LightPillar";
 import { signupUser } from "../services/auth.service";
 import { useNavigate } from "react-router-dom";
 
+import { signInWithPopup } from "firebase/auth";
+import { auth, googleProvider } from "../config/firebase";
+import { googleLogin } from "../services/auth.service";
+
+
 export default function Signup() {
   const [role, setRole] = useState("customer");
     const [formData, setFormData] = useState({
@@ -19,6 +24,34 @@ const navigate=useNavigate()
 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+
+
+  
+const handleGoogleLogin = async () => {
+  try {
+    const result = await signInWithPopup(auth, googleProvider);
+    const user = result.user;
+
+    const res = await googleLogin({
+      name: user.displayName,
+      email: user.email,
+      photo: user.photoURL,
+    });
+
+    localStorage.setItem("user", JSON.stringify(res.user));
+
+    if (!res.user.isProfileComplete) {
+  navigate("/complete-profile");
+} else {
+  navigate("/");
+}
+
+  } catch (error) {
+    console.log(error);
+    alert("Google login failed");
+  }
+};
+
 
    const handleChange = (e) => {
     setFormData({
@@ -169,7 +202,13 @@ const navigate=useNavigate()
           >
            {loading ? "Signing up..." : "Sign Up"}
           </button>
-
+  <button
+  onClick={handleGoogleLogin}
+  className="w-full mt-4 border flex items-center justify-center gap-3 py-3 rounded-lg hover:bg-gray-100 hover:cursor-pointer"
+>
+  <img src="/google-logo.png" className="h-5" />
+  Continue with Google
+</button>
           <p className="text-sm text-center mt-4">
             Already have an account?{" "}
             <a href="/login" className="text-blue-600 font-medium">
