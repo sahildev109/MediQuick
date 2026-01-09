@@ -3,10 +3,15 @@ import {
   placeOrder,
   getMyOrders,
   getAllOrders,
+  createRazorpayOrder,
+  verifyRazorpayPayment,
 } from "../controllers/Order.controller.js";
 import { updateOrderStatus } from "../controllers/Order.controller.js";
 
 const router = express.Router();
+
+router.post("/create-payment", createRazorpayOrder);
+router.post("/verify-payment", verifyRazorpayPayment);
 
 
 router.put("/:orderId/status", updateOrderStatus);

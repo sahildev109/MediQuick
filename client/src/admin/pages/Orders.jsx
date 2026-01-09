@@ -12,14 +12,27 @@ export default function AdminOrders() {
     const [orders, setOrders] = useState([]);
 
   useEffect(() => {
-    const fetchOrders = async () => {
-      const data = await getAllOrders();
-      setOrders(data);
-      // console.log(data)
-    };
+  const fetchOrders = async () => {
+    const data = await getAllOrders();
+    setOrders(data);
+  };
 
-    fetchOrders();
-  }, []);
+  fetchOrders();
+}, []);
+
+useEffect(() => {
+  const deliveredCount = orders.filter(
+    (order) => order.status === "Delivered"
+  ).length;
+
+  localStorage.setItem("DeliveredNo", deliveredCount);
+  
+  const pendingCount=orders.length - deliveredCount
+  localStorage.setItem("PendingNo", pendingCount);
+
+}, [orders]);
+
+
 
 
   
@@ -106,10 +119,21 @@ const handleStatusChange = async (orderId, newStatus) => {
               <p className="text-gray-500">{order.user?.name}</p>
               <p className="text-gray-500">{order.user?.address}</p>
                {
-              order.items.map((i)=>(
-                 <p className="text-sm text-gray-500">{i.qty}x {i.name}</p>
-              ))
-             }
+                 order.items.map((i)=>(
+                   <p className="text-sm text-gray-500">{i.qty}x {i.name}</p>
+                  ))
+                }
+                <span
+  className={`px-3 py-1 rounded-full text-sm font-medium ${
+    order.paymentStatus === "Paid"
+      ? "bg-green-100 text-green-700"
+      : "bg-gray-100 text-yellow-400"
+  }`}
+>
+  {order.paymentStatus} | {order.paymentMethod}
+</span>
+
+
             </div>
 
             <select className="border p-2 rounded"

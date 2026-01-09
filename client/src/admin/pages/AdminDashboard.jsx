@@ -9,8 +9,8 @@ export default function AdminDashboard() {
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 flex-1">
         <StatCard title="Total Products" value={localStorage.getItem('medicinesNO')} />
-        <StatCard title="Pending Orders" value="5" />
-        <StatCard title="Delivered Orders" value="42" />
+        <StatCard title="Pending Orders" value={localStorage.getItem('PendingNo')} />
+        <StatCard title="Delivered Orders" value={localStorage.getItem('DeliveredNo')} />
       </div>
       </div>
     </div>

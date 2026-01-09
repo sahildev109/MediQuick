@@ -3,11 +3,19 @@ import {
   getMyOrdersAPI,
   getAllOrdersAPI,
   updateOrderStatusAPI,
+  createPaymentAPI,
+  verifyPaymentAPI,
 } from "../api/order.api";
 
 // Customer places order
 export const placeOrder = async (data) => {
   return (await placeOrderAPI(data)).data;
+};
+export const createPayment = async (data) => {
+  return (await createPaymentAPI(data)).data;
+};
+export const verifyPayment = async (data) => {
+  return (await verifyPaymentAPI(data)).data;
 };
 
 // Customer sees own orders

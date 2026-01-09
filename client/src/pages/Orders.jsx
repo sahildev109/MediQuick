@@ -55,11 +55,22 @@ export default function Orders() {
     };
   }, [orders]);
 
+  const statusStyles = {
+  Pending: "bg-yellow-100 text-yellow-700",
+  Accepted: "bg-blue-100 text-blue-700",
+  Packed: "bg-purple-100 text-purple-700",
+  "Out for Delivery": "bg-orange-100 text-orange-700",
+  Delivered: "bg-green-100 text-green-700",
+};
+
   return (
     <div className="p-6 max-w-4xl mx-auto">
       <h1 className="text-2xl font-semibold mb-6">My Orders</h1>
 
       <div className="space-y-4">
+        {orders.length===0 && (
+          <p>Make your first order</p>
+        )}
         {orders.map((order) => (
           <div
             key={order._id}
@@ -75,6 +86,15 @@ export default function Orders() {
                   {i.qty}x {i.name}
                 </p>
               ))}
+              <span
+  className={`px-3 py-1 rounded-full text-sm font-medium ${
+    order.paymentStatus === "Paid"
+      ? "bg-green-100 text-green-700"
+      : "bg-gray-100 text-yellow-400"
+  }`}
+>
+  {order.paymentStatus} | {order.paymentMethod}
+</span>
 
               {order.status === "Out for Delivery" && (
   <div className="w-2xl ">
@@ -91,9 +111,14 @@ export default function Orders() {
               <p className="font-semibold">
                 ₹{order.totalAmount}
               </p>
-              <span className="text-sm px-3 py-1 rounded-full bg-yellow-100 text-yellow-700">
-                {order.status}
-              </span>
+          <span
+  className={`text-sm px-3 py-1 rounded-full font-medium ${
+    statusStyles[order.status] || "bg-gray-100 text-gray-600"
+  }`}
+>
+  {order.status}
+</span>
+
             </div>
           </div>
         ))}

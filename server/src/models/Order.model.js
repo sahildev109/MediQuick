@@ -49,6 +49,12 @@ const orderSchema = new mongoose.Schema(
       enum: ["COD", "ONLINE"],
       default: "COD",
     },
+    paymentStatus: {
+  type: String,
+  enum: ["Pending", "Paid"],
+  default: "Pending",
+},
+
      isStockReduced: {
     type: Boolean,
     default: false,

@@ -3,6 +3,7 @@ import { FaTrash } from "react-icons/fa";
 import {getUser} from '../utils/auth'
 import { useNavigate } from "react-router-dom";
 import { placeOrder } from "../services/order.service";
+import { createPayment, verifyPayment } from "../services/order.service";
 
 export default function Cart() {
   const navigate=useNavigate()
@@ -10,7 +11,42 @@ export default function Cart() {
   const [cartItems, setCartItems] = useState(
     JSON.parse(localStorage.getItem("cart")) || []
   );
-  const [paymentMethod, setPaymentMethod]=useState()
+  const [paymentMethod, setPaymentMethod]=useState('COD')
+
+
+
+const handleRazorpayPayment = async (orderId) => {
+  const paymentOrder = await createPayment(total);
+
+  const options = {
+    key: import.meta.env.VITE_RAZORPAY_KEY_ID,
+    amount: paymentOrder.amount,
+    currency: "INR",
+    name: "MediQuick",
+    description: "Medicine Order",
+    order_id: paymentOrder.id,
+
+    handler: async function (response) {
+      await verifyPayment({
+        ...response,
+        orderId,
+      });
+
+      localStorage.removeItem("cart");
+      navigate("/orders");
+    },
+
+    theme: {
+      color: "#467f95",
+    },
+  };
+
+  const razorpay = new window.Razorpay(options);
+  razorpay.open();
+};
+
+
+
 
   // 2️⃣ Delete item
 const handleDelete = (_id) => {
@@ -61,13 +97,19 @@ const handleDelete = (_id) => {
   // console.log(orderData)
 
   try {
+    console.log('jello')
    const res= await placeOrder(orderData);
-   console.log(res)
+  const backendOrderId = res.order._id;
 
-    // Clear cart after order
+  // 2️⃣ COD → done
+  if (paymentMethod === "COD") {
     localStorage.removeItem("cart");
-
     navigate("/orders");
+    return;
+  }
+
+  // 3️⃣ ONLINE → Razorpay
+  handleRazorpayPayment(backendOrderId);
   } catch (error) {
     console.log(error)
     alert("Order failed");
@@ -108,10 +150,12 @@ const handleDelete = (_id) => {
           <div className="mt-6 bg-white p-4 rounded-xl shadow flex justify-between items-center">
             <p className="text-lg font-semibold">Payment Method</p>
             <select
+            value={paymentMethod}
             onChange={(e)=>setPaymentMethod(e.target.value)}>
               <option value="COD">COD</option>
               <option value="ONLINE">ONLINE</option>
             </select>
+            
           </div>
           <div className="mt-6 bg-white p-4 rounded-xl shadow flex justify-between items-center">
             <p className="text-lg font-semibold">Total: ₹{total}</p>

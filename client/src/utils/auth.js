@@ -14,6 +14,7 @@ export const logoutAdmin = () => {
    
     localStorage.removeItem("user");
     localStorage.removeItem("medicinesNO");
+    localStorage.clear()
 
 
 };
