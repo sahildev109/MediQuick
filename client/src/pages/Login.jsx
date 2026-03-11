@@ -34,7 +34,7 @@ const handleGoogleLogin = async () => {
     if (!res.user.isProfileComplete) {
   navigate("/complete-profile");
 } else {
-  navigate("/");
+  navigate("/customer-dashboard");
 }
 
   } catch (error) {
@@ -57,9 +57,8 @@ const handleSubmit = async (e) => {
     if(res.user.role==='admin'){
       navigate("/admin");
     }else{
-      
-    // redirect
-    navigate("/");
+      // redirect
+    navigate("/customer-dashboard");
     }
   } catch (err) {
     setError(err.response?.data?.message || "Login failed");

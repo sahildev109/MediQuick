@@ -12,7 +12,7 @@ const user=getUser()
   return (
     <div className="bg-white/90 shadow-xl px-18  py-2  flex justify-between items-center border-4 border-cyan-600 rounded-lg " >
       <div className="flex gap-6 justify-center items-center">
-      <Link to="/" className="text-2xl font-bold">
+      <Link to="/customer-dashboard" className="text-2xl font-bold">
         <img src={Logo} className="h-25 w-50 rounded-2xl"></img>
       </Link>
       <p className="font-bold text-4xl" style={{color:'#1c3c71'}}>Hello, {user.name}</p>

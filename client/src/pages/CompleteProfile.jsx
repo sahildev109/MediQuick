@@ -42,7 +42,7 @@ export default function CompleteProfile() {
       // update localStorage
       localStorage.setItem("user", JSON.stringify(res.data.user));
 
-      navigate("/");
+      navigate("/customer-dashboard");
     } catch (err) {
       setError("Failed to complete profile");
     } finally {

@@ -1,5 +1,6 @@
 import { Routes, Route, useLocation } from "react-router-dom";
-import Home from "./pages/Home";
+import Landing from "./pages/Landing";
+import CustomerDashboard from "./pages/CustomerDashboard";
 import Orders from "./pages/Orders";
 import Profile from "./pages/Profile";
 import Cart from "./pages/Cart";
@@ -17,6 +18,7 @@ import CompleteProfile from "./pages/CompleteProfile";
 export default function App() {
    const location = useLocation();
      const hideNavbar =
+    location.pathname === "/" ||
     location.pathname === "/login" ||
     location.pathname === "/signup"||
     location.pathname==="/admin"||
@@ -36,23 +38,25 @@ export default function App() {
          {!hideNavbar && <Navbar />}
 
       <Routes>
-          {/* 🔒 Protected Routes */}
+          {/* � Public Routes */}
+        <Route path="/" element={<Landing />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
+        <Route path="/complete-profile" element={<CompleteProfile/>}/>
+
+          {/* 🔒 Protected Customer Routes */}
         <Route element={<ProtectedRoute />}>
-        <Route path="/" element={<Home />} />
+        <Route path="/customer-dashboard" element={<CustomerDashboard />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/orders" element={<Orders />} />
         <Route path="/profile" element={<Profile />} />
         </Route>
 
- {/* 🔓 Public Routes */}
-        <Route path="/login" element={<Login />} />
-<Route path="/signup" element={<Signup />} />
-<Route path="/admin" element={<AdminDashboard/>}/>
-<Route path="/admin/add-medicine" element={<AddMedicine/>}/>
-<Route path="/admin/inventory" element={<Inventory/>}/>
-<Route path="/admin/orders" element={<AdminOrders/>}/>
-<Route path="/complete-profile" element={<CompleteProfile/>}/>
-
+        {/* 🔒 Admin Routes */}
+        <Route path="/admin" element={<AdminDashboard/>}/>
+        <Route path="/admin/add-medicine" element={<AddMedicine/>}/>
+        <Route path="/admin/inventory" element={<Inventory/>}/>
+        <Route path="/admin/orders" element={<AdminOrders/>}/>
 
       </Routes>
       </ClickSpark>

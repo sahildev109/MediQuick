@@ -43,7 +43,7 @@ const handleGoogleLogin = async () => {
     if (!res.user.isProfileComplete) {
   navigate("/complete-profile");
 } else {
-  navigate("/");
+  navigate("/customer-dashboard");
 }
 
   } catch (error) {
@@ -70,7 +70,7 @@ const handleGoogleLogin = async () => {
           // ✅ Remember user
     localStorage.setItem("user", JSON.stringify(res.user));
      // redirect
-    navigate("/");
+    navigate("/customer-dashboard");
     } catch (err) {
       setError(err.response?.data?.message || "Something went wrong");
     } finally {
