@@ -55,8 +55,8 @@ export default function CompleteProfile() {
       {/* Background */}
       <div className="absolute inset-0 z-0">
         <LightPillar
-          topColor="#467f95"
-          bottomColor="#8fd3b7"
+          topColor="#0077B6"
+          bottomColor="#90E0EF"
           intensity={2}
           rotationSpeed={0.5}
           glowAmount={0.002}
@@ -73,7 +73,7 @@ export default function CompleteProfile() {
             Complete Your Profile
           </h2>
 
-          <p className="text-sm text-gray-600 text-center mb-6">
+          <p className="text-sm text-[#0077B6] text-center mb-6">
             Just a few more details to get started
           </p>
 
@@ -108,14 +108,14 @@ export default function CompleteProfile() {
             />
 
             {error && (
-              <p className="text-red-600 text-sm text-center">{error}</p>
+              <p className="text-[#03045E] text-sm text-center">{error}</p>
             )}
 
             <button
               onClick={handleSubmit}
               disabled={loading}
               className="w-full text-white py-3 rounded-lg"
-              style={{ backgroundColor: "#467f95" }}
+              style={{ backgroundColor: "#0077B6" }}
             >
               {loading ? "Saving..." : "Complete Profile"}
             </button>

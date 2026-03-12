@@ -49,41 +49,54 @@ export default function Orders() {
   }, []);
 
   const statusStyles = {
-    Pending: "bg-yellow-100 text-yellow-700",
-    Accepted: "bg-blue-100 text-blue-700",
-    Packed: "bg-purple-100 text-purple-700",
-    "Out for Delivery": "bg-orange-100 text-orange-700",
-    Delivered: "bg-green-100 text-green-700",
+    Pending: "bg-[#CAF0F8] text-[#0077B6]",
+    Accepted: "bg-[#90E0EF] text-[#0077B6]",
+    Packed: "bg-[#CAF0F8] text-[#03045E]",
+    "Out for Delivery": "bg-[#90E0EF] text-[#03045E]",
+    Delivered: "bg-[#00B4D8] text-[#03045E]",
   };
 
   return (
-    <div className="p-6 max-w-4xl mx-auto">
-      <h1 className="text-2xl font-semibold mb-6">My Orders</h1>
+    <div className="min-h-screen bg-[#03045E] p-6 md:p-8">
+      <div className="max-w-7xl mx-auto">
+      <h1 className="text-3xl md:text-4xl font-bold mb-6 text-[#CAF0F8] tracking-tight">My Orders</h1>
+
+      <div className="bg-[#CAF0F8] border border-[#90E0EF] p-6 md:p-8 rounded-2xl shadow-2xl">
+        <div className="rounded-2xl border border-[#90E0EF] bg-white/80 p-5 md:p-6 mb-6">
+          <p className="text-sm font-medium text-[#0077B6]">Order Summary</p>
+          <p className="text-2xl md:text-3xl font-bold text-[#03045E]">{orders.length} order{orders.length !== 1 ? 's' : ''}</p>
+        </div>
 
       <div className="space-y-4">
-        {orders.length === 0 && <p>Make your first order</p>}
+        {orders.length === 0 && (
+          <div className="bg-white/70 border border-[#90E0EF] rounded-2xl p-8 shadow-lg">
+            <p className="text-[#0077B6] text-lg font-medium">Make your first order</p>
+            <p className="text-[#03045E]/80 mt-1">Your placed orders will appear here with live updates.</p>
+          </div>
+        )}
 
         {orders.map((order) => (
           <div
             key={order._id}
-            className="bg-white p-4 rounded-xl shadow flex justify-between"
+            className="bg-white/70 border border-[#90E0EF] p-5 rounded-2xl shadow-lg flex flex-col md:flex-row md:justify-between gap-4"
           >
-            <div>
-              <p className="font-medium">
+            <div className="space-y-2">
+              <p className="text-xs uppercase tracking-wide text-[#0077B6] font-semibold">Order</p>
+              <p className="font-semibold text-[#03045E] text-lg">
                 Order #{order._id.slice(-6)}
               </p>
 
               {order.items.map((i) => (
-                <p key={i._id} className="text-sm text-gray-500">
+                <p key={i._id} className="text-sm text-[#0077B6] font-medium">
                   {i.qty}x {i.name}
                 </p>
               ))}
 
               <span
-                className={`px-3 py-1 rounded-full text-sm font-medium ${
+                className={`inline-flex px-3 py-1 rounded-full text-sm font-medium ${
                   order.paymentStatus === "Paid"
-                    ? "bg-green-100 text-green-700"
-                    : "bg-gray-100 text-yellow-400"
+                    ? "bg-[#90E0EF] text-[#03045E]"
+                    : "bg-[#CAF0F8] text-[#0077B6]"
                 }`}
               >
                 {order.paymentStatus} | {order.paymentMethod}
@@ -91,7 +104,7 @@ export default function Orders() {
 
               {order.status === "Out for Delivery" && (
                 <div className="w-2xl">
-                  <p className="text-xs text-blue-600 mt-2">
+                  <p className="text-xs text-[#0077B6] mt-2">
                     🚚 Delivery in progress
                   </p>
 
@@ -100,13 +113,14 @@ export default function Orders() {
               )}
             </div>
 
-            <div className="text-right">
-              <p className="font-semibold">₹{order.totalAmount}</p>
+            <div className="md:text-right flex md:block justify-between items-start md:items-end gap-3">
+              <p className="text-xs uppercase tracking-wide text-[#0077B6] font-semibold md:mb-1">Amount</p>
+              <p className="font-bold text-xl text-[#03045E]">₹{order.totalAmount}</p>
 
               <span
-                className={`text-sm px-3 py-1 rounded-full font-medium ${
+                className={`inline-flex text-sm px-3 py-1 rounded-full font-medium ${
                   statusStyles[order.status] ||
-                  "bg-gray-100 text-gray-600"
+                  "bg-[#CAF0F8] text-[#0077B6]"
                 }`}
               >
                 {order.status}
@@ -114,6 +128,8 @@ export default function Orders() {
             </div>
           </div>
         ))}
+      </div>
+      </div>
       </div>
     </div>
   );

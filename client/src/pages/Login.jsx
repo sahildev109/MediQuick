@@ -75,8 +75,8 @@ const handleSubmit = async (e) => {
       {/* 🔮 Animated Background */}
       <div className="absolute inset-0 z-0">
         <LightPillar
-          topColor="#8fd3b7"
-          bottomColor="#467f95"
+          topColor="#90E0EF"
+          bottomColor="#0077B6"
           intensity={2.0}
           rotationSpeed={0.6}
           glowAmount={0.002}
@@ -91,14 +91,20 @@ const handleSubmit = async (e) => {
 
     
       <div className="relative z-10 min-h-screen flex items-center justify-center">
-        <div className="bg-white/90 backdrop-blur-md p-8 rounded-xl shadow-lg w-full max-w-md">
+        <div className="w-full max-w-md bg-[#CAF0F8] border border-[#90E0EF] p-6 md:p-8 rounded-2xl shadow-2xl">
+
+          <div className="rounded-2xl border border-[#90E0EF] bg-white/80 p-5 mb-6 flex flex-col items-center">
+            <h2 className="text-sm uppercase tracking-wide font-semibold text-[#0077B6]">
+              Welcome Back
+            </h2>
+            <img src="/newLogo.jpeg" className="h-32 w-auto mt-2 rounded-xl border border-[#90E0EF]" />
+          </div>
 
        
-          <div className="flex justify-center items-center flex-col mb-6">
-            <h2 className="text-2xl font-bold text-center">
+          <div className="flex justify-center items-center flex-col mb-5">
+            <h2 className="text-2xl font-bold text-center text-[#03045E]">
               Login to
             </h2>
-            <img src="./logo.png" className="h-70 w-70" />
           </div>
 
         
@@ -110,9 +116,9 @@ const handleSubmit = async (e) => {
                 className={`flex-1 py-2 rounded-lg border transition ${
                   role === r
                     ? "text-white"
-                    : "bg-gray-100"
+                    : "bg-white/70 text-[#03045E]"
                 }`}
-                style={role === r ? { backgroundColor: "#467f95" } : null}
+                style={role === r ? { backgroundColor: "#0077B6" } : null}
               >
                 {r.charAt(0).toUpperCase() + r.slice(1)}
               </button>
@@ -124,7 +130,7 @@ const handleSubmit = async (e) => {
             <input
               type="email"
               placeholder="Email"
-              className="w-full p-3 border rounded-lg"
+              className="w-full p-3 border border-[#90E0EF] rounded-xl text-[#03045E] bg-white/80 focus:outline-none focus:ring-2 focus:ring-[#00B4D8]"
               name="email"
               onChange={(e)=>setEmail(e.target.value)}
             />
@@ -132,16 +138,16 @@ const handleSubmit = async (e) => {
             <input
               type="password"
               placeholder="Password"
-              className="w-full p-3 border rounded-lg"
+              className="w-full p-3 border border-[#90E0EF] rounded-xl text-[#03045E] bg-white/80 focus:outline-none focus:ring-2 focus:ring-[#00B4D8]"
                name="password"
               onChange={(e)=>setPassword(e.target.value)}
             />
           
-{incorrectPass && (<p className="text-red-600 text-center">Incorrect Credentials !</p>)}
+{incorrectPass && (<p className="text-[#03045E] text-center">Incorrect Credentials !</p>)}
 
             <button
-              className="w-full text-white py-3 rounded-lg"
-              style={{ backgroundColor: "#467f95" }}
+              className="w-full text-white py-3 rounded-xl font-semibold hover:bg-[#00B4D8] transition-colors"
+              style={{ backgroundColor: "#0077B6" }}
               onClick={handleSubmit}
             >
               Login as {role}
@@ -149,7 +155,7 @@ const handleSubmit = async (e) => {
           </form>
           <button
   onClick={handleGoogleLogin}
-  className="w-full mt-4 border flex items-center justify-center gap-3 py-3 rounded-lg hover:bg-gray-100 hover:cursor-pointer"
+  className="w-full mt-4 border border-[#90E0EF] bg-white/70 flex items-center justify-center gap-3 py-3 rounded-xl hover:bg-white hover:cursor-pointer transition-colors"
 >
   <img src="/google-logo.png" className="h-5" />
   Continue with Google
@@ -158,7 +164,7 @@ const handleSubmit = async (e) => {
 
           <p className="text-sm text-center mt-4">
             Don’t have an account?{" "}
-            <a href="/signup" className="text-blue-600 font-medium">
+            <a href="/signup" className="text-[#0077B6] font-medium">
               Sign up
             </a>
           </p>

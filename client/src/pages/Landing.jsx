@@ -1,7 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
 import { getUser } from "../utils/auth";
 import { FaArrowRight } from "react-icons/fa";
-import Logo from "../assets/logo.png";
 import { useEffect, useRef } from "react";
 
 export default function Landing() {
@@ -14,21 +13,21 @@ export default function Landing() {
   }
 
   return (
-    <div style={{ fontFamily: "'DM Sans', sans-serif", background: "#040f1c", minHeight: "100vh", overflowX: "hidden", position: "relative" }}>
+    <div style={{ fontFamily: "'DM Sans', sans-serif", background: "#03045E", minHeight: "100vh", overflowX: "hidden", position: "relative" }}>
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=Syne:wght@700;800&display=swap');
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
 
         :root {
-          --teal-bright: #2dd4bf;
-          --teal-mid: #14b8a6;
-          --teal-deep: #0d9488;
-          --navy-dark: #040f1c;
-          --navy-mid: #0a1f35;
-          --navy-light: #0f2d4a;
-          --mint: #5eead4;
-          --white: #f0fdfa;
+          --teal-bright: #00B4D8;
+          --teal-mid: #0077B6;
+          --teal-deep: #03045E;
+          --navy-dark: #03045E;
+          --navy-mid: #0077B6;
+          --navy-light: #00B4D8;
+          --mint: #90E0EF;
+          --white: #CAF0F8;
         }
 
         /* ── ANIMATED BACKGROUND ── */
@@ -36,9 +35,9 @@ export default function Landing() {
           position: fixed;
           inset: 0;
           z-index: 0;
-          background: radial-gradient(ellipse 80% 60% at 20% 0%, rgba(13,148,136,0.18) 0%, transparent 60%),
-                      radial-gradient(ellipse 60% 50% at 80% 100%, rgba(45,212,191,0.12) 0%, transparent 55%),
-                      #040f1c;
+          background: radial-gradient(ellipse 80% 60% at 20% 0%, rgba(0,119,182,0.22) 0%, transparent 60%),
+                      radial-gradient(ellipse 60% 50% at 80% 100%, rgba(0,180,216,0.16) 0%, transparent 55%),
+                      #03045E;
         }
 
         /* Pill decorations inspired by logo border */
@@ -64,12 +63,12 @@ export default function Landing() {
           align-items: center;
           justify-content: space-between;
           padding: 16px 48px;
-          background: rgba(4,15,28,0.7);
+          background: rgba(3,4,94,0.7);
           backdrop-filter: blur(20px);
-          border-bottom: 1px solid rgba(45,212,191,0.08);
+          border-bottom: 1px solid rgba(144,224,239,0.16);
         }
 
-        .nav-logo { height: 52px; width: auto; border-radius: 10px; }
+        .nav-logo { height: 92px; width: 200px; border-radius: 10px; }
 
         .nav-links { display: flex; gap: 12px; align-items: center; }
 
@@ -80,7 +79,7 @@ export default function Landing() {
           font-weight: 600;
           font-size: 0.95rem;
           border-radius: 8px;
-          border: 1px solid rgba(45,212,191,0.2);
+          border: 1px solid rgba(144,224,239,0.3);
           background: transparent;
           cursor: pointer;
           text-decoration: none;
@@ -88,8 +87,8 @@ export default function Landing() {
           letter-spacing: 0.02em;
         }
         .btn-ghost:hover {
-          background: rgba(45,212,191,0.08);
-          border-color: rgba(45,212,191,0.5);
+          background: rgba(202,240,248,0.2);
+          border-color: rgba(144,224,239,0.5);
           color: var(--teal-bright);
         }
 
@@ -105,12 +104,12 @@ export default function Landing() {
           cursor: pointer;
           text-decoration: none;
           transition: all 0.25s ease;
-          box-shadow: 0 0 20px rgba(20,184,166,0.3);
+          box-shadow: 0 0 20px rgba(0,119,182,0.3);
           letter-spacing: 0.02em;
         }
         .btn-primary:hover {
           transform: translateY(-2px);
-          box-shadow: 0 0 32px rgba(20,184,166,0.5);
+          box-shadow: 0 0 32px rgba(0,180,216,0.5);
         }
 
         /* ── HERO ── */
@@ -132,8 +131,8 @@ export default function Landing() {
           gap: 8px;
           padding: 6px 18px;
           border-radius: 100px;
-          background: rgba(45,212,191,0.1);
-          border: 1px solid rgba(45,212,191,0.25);
+          background: rgba(202,240,248,0.18);
+          border: 1px solid rgba(144,224,239,0.35);
           color: var(--teal-bright);
           font-size: 0.8rem;
           font-weight: 600;
@@ -180,7 +179,7 @@ export default function Landing() {
           font-family: 'Syne', sans-serif;
           font-size: clamp(2rem, 5vw, 4rem);
           font-weight: 700;
-          color: rgba(240,253,250,0.25);
+          color: rgba(202,240,248,0.45);
           margin-bottom: 28px;
           animation: fadeUp 0.7s 0.2s ease forwards;
           opacity: 0;
@@ -190,7 +189,7 @@ export default function Landing() {
         .hero-desc {
           max-width: 540px;
           font-size: 1.1rem;
-          color: rgba(240,253,250,0.6);
+          color: rgba(202,240,248,0.8);
           line-height: 1.7;
           margin-bottom: 48px;
           animation: fadeUp 0.7s 0.3s ease forwards;
@@ -220,12 +219,12 @@ export default function Landing() {
           border-radius: 12px;
           text-decoration: none;
           transition: all 0.3s ease;
-          box-shadow: 0 0 40px rgba(45,212,191,0.35), 0 4px 20px rgba(0,0,0,0.3);
+          box-shadow: 0 0 40px rgba(0,180,216,0.35), 0 4px 20px rgba(3,4,94,0.3);
           letter-spacing: 0.01em;
         }
         .cta-primary:hover {
           transform: translateY(-3px);
-          box-shadow: 0 0 60px rgba(45,212,191,0.55), 0 8px 30px rgba(0,0,0,0.4);
+          box-shadow: 0 0 60px rgba(0,180,216,0.55), 0 8px 30px rgba(3,4,94,0.4);
         }
 
         .cta-secondary {
@@ -233,20 +232,20 @@ export default function Landing() {
           align-items: center;
           gap: 10px;
           padding: 16px 36px;
-          background: rgba(255,255,255,0.04);
+          background: rgba(202,240,248,0.1);
           color: var(--white);
           font-family: 'DM Sans', sans-serif;
           font-weight: 600;
           font-size: 1rem;
           border-radius: 12px;
-          border: 1px solid rgba(255,255,255,0.12);
+          border: 1px solid rgba(202,240,248,0.3);
           text-decoration: none;
           transition: all 0.3s ease;
           letter-spacing: 0.01em;
         }
         .cta-secondary:hover {
-          background: rgba(255,255,255,0.08);
-          border-color: rgba(45,212,191,0.4);
+          background: rgba(202,240,248,0.16);
+          border-color: rgba(0,180,216,0.45);
           color: var(--teal-bright);
         }
 
@@ -264,7 +263,7 @@ export default function Landing() {
 
         .stat-item {
           padding: 24px 48px;
-          border-right: 1px solid rgba(45,212,191,0.12);
+          border-right: 1px solid rgba(144,224,239,0.28);
           text-align: center;
         }
         .stat-item:last-child { border-right: none; }
@@ -278,7 +277,7 @@ export default function Landing() {
         }
         .stat-label {
           font-size: 0.8rem;
-          color: rgba(240,253,250,0.4);
+          color: rgba(202,240,248,0.65);
           text-transform: uppercase;
           letter-spacing: 0.08em;
           margin-top: 6px;
@@ -321,8 +320,8 @@ export default function Landing() {
         }
 
         .feature-card {
-          background: rgba(255,255,255,0.03);
-          border: 1px solid rgba(45,212,191,0.1);
+          background: rgba(202,240,248,0.08);
+          border: 1px solid rgba(144,224,239,0.22);
           border-radius: 20px;
           padding: 36px 32px;
           transition: all 0.3s ease;
@@ -339,8 +338,8 @@ export default function Landing() {
           transition: opacity 0.3s ease;
         }
         .feature-card:hover {
-          border-color: rgba(45,212,191,0.3);
-          background: rgba(45,212,191,0.05);
+          border-color: rgba(0,180,216,0.4);
+          background: rgba(202,240,248,0.12);
           transform: translateY(-4px);
         }
         .feature-card:hover::before { opacity: 1; }
@@ -348,8 +347,8 @@ export default function Landing() {
         .feature-icon {
           width: 52px; height: 52px;
           border-radius: 14px;
-          background: rgba(45,212,191,0.12);
-          border: 1px solid rgba(45,212,191,0.2);
+          background: rgba(202,240,248,0.2);
+          border: 1px solid rgba(144,224,239,0.35);
           display: flex;
           align-items: center;
           justify-content: center;
@@ -368,7 +367,7 @@ export default function Landing() {
 
         .feature-desc {
           font-size: 0.92rem;
-          color: rgba(240,253,250,0.5);
+          color: rgba(202,240,248,0.75);
           line-height: 1.65;
         }
 
@@ -378,8 +377,8 @@ export default function Landing() {
           z-index: 10;
           text-align: center;
           padding: 32px;
-          border-top: 1px solid rgba(45,212,191,0.08);
-          color: rgba(240,253,250,0.25);
+          border-top: 1px solid rgba(144,224,239,0.16);
+          color: rgba(202,240,248,0.5);
           font-size: 0.85rem;
           letter-spacing: 0.02em;
         }
@@ -400,14 +399,14 @@ export default function Landing() {
       {/* Animated pill background elements matching logo border */}
       <div className="bg-canvas">
         {[
-          { w:90, h:34, top:'8%', left:'5%', bg:'#14b8a6', dur:'8s', delay:'0s' },
-          { w:70, h:26, top:'15%', left:'88%', bg:'#2dd4bf', dur:'10s', delay:'2s' },
-          { w:110, h:38, top:'70%', left:'3%', bg:'#0d9488', dur:'12s', delay:'1s' },
-          { w:65, h:24, top:'80%', left:'90%', bg:'#5eead4', dur:'9s', delay:'3s' },
-          { w:85, h:30, top:'45%', left:'95%', bg:'#14b8a6', dur:'11s', delay:'0.5s' },
-          { w:55, h:20, top:'30%', left:'-2%', bg:'#2dd4bf', dur:'7s', delay:'4s' },
-          { w:100, h:36, top:'92%', left:'45%', bg:'#0d9488', dur:'13s', delay:'2.5s' },
-          { w:75, h:28, top:'5%', left:'45%', bg:'#5eead4', dur:'9.5s', delay:'1.5s' },
+          { w:90, h:34, top:'8%', left:'5%', bg:'#0077B6', dur:'8s', delay:'0s' },
+          { w:70, h:26, top:'15%', left:'88%', bg:'#00B4D8', dur:'10s', delay:'2s' },
+          { w:110, h:38, top:'70%', left:'3%', bg:'#03045E', dur:'12s', delay:'1s' },
+          { w:65, h:24, top:'80%', left:'90%', bg:'#90E0EF', dur:'9s', delay:'3s' },
+          { w:85, h:30, top:'45%', left:'95%', bg:'#0077B6', dur:'11s', delay:'0.5s' },
+          { w:55, h:20, top:'30%', left:'-2%', bg:'#00B4D8', dur:'7s', delay:'4s' },
+          { w:100, h:36, top:'92%', left:'45%', bg:'#03045E', dur:'13s', delay:'2.5s' },
+          { w:75, h:28, top:'5%', left:'45%', bg:'#90E0EF', dur:'9.5s', delay:'1.5s' },
         ].map((p, i) => (
           <div key={i} className="pill" style={{
             width: p.w, height: p.h,
@@ -421,7 +420,7 @@ export default function Landing() {
 
       {/* NAV */}
       <nav className="nav">
-        <img src={Logo} alt="MediQuick" className="nav-logo" />
+        <img src="/newLogo.jpeg" alt="MediQuick" className="nav-logo" />
         <div className="nav-links">
           <Link to="/login" className="btn-ghost">Login</Link>
           <Link to="/signup" className="btn-primary">Sign Up</Link>

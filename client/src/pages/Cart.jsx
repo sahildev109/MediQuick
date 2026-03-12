@@ -33,11 +33,12 @@ const handleRazorpayPayment = async (orderId) => {
       });
 
       localStorage.removeItem("cart");
+      window.dispatchEvent(new Event("cart-updated"));
       navigate("/orders");
     },
 
     theme: {
-      color: "#467f95",
+      color: "#0077B6",
     },
   };
 
@@ -66,6 +67,7 @@ const handleDelete = (_id) => {
 
   setCartItems(updatedCart);
   localStorage.setItem("cart", JSON.stringify(updatedCart));
+  window.dispatchEvent(new Event("cart-updated"));
 };
 
 
@@ -104,6 +106,7 @@ const handleDelete = (_id) => {
   // 2️⃣ COD → done
   if (paymentMethod === "COD") {
     localStorage.removeItem("cart");
+    window.dispatchEvent(new Event("cart-updated"));
     navigate("/orders");
     return;
   }
@@ -117,29 +120,40 @@ const handleDelete = (_id) => {
 };
 
   return (
-    <div className="p-6 max-w-4xl mx-auto">
-      <h1 className="text-2xl font-semibold mb-6">Your Cart</h1>
+    <div className="min-h-screen bg-[#03045E] p-6 md:p-8">
+      <div className="max-w-7xl mx-auto">
+      <h1 className="text-3xl md:text-4xl font-bold mb-6 text-[#CAF0F8] tracking-tight">Your Cart</h1>
+
+      <div className="bg-[#CAF0F8] border border-[#90E0EF] p-6 md:p-8 rounded-2xl shadow-2xl">
+        <div className="rounded-2xl border border-[#90E0EF] bg-white/80 p-5 md:p-6 mb-6">
+          <p className="text-sm font-medium text-[#0077B6]">Cart Summary</p>
+          <p className="text-2xl md:text-3xl font-bold text-[#03045E]">{cartItems.length} item{cartItems.length !== 1 ? 's' : ''}</p>
+        </div>
 
       {cartItems.length === 0 ? (
-        <p className="text-gray-500">Your cart is empty</p>
+        <div className="bg-white/70 border border-[#90E0EF] rounded-2xl p-8 shadow-lg">
+          <p className="text-[#0077B6] text-lg font-medium">Your cart is empty</p>
+          <p className="text-[#03045E]/80 mt-1">Add medicines from dashboard to continue checkout.</p>
+        </div>
       ) : (
         <>
           <div className="space-y-4">
             {cartItems.map((item) => (
               <div
                 key={item._id}
-                className="flex justify-between items-center bg-white p-4 rounded-xl shadow"
+                className="flex justify-between items-center bg-white/70 border border-[#90E0EF] p-5 rounded-2xl shadow-lg"
               >
                 <div>
-                  <h2 className="font-medium">{item.name}</h2>
-                  <p className="text-gray-500">
+                  <p className="text-xs uppercase tracking-wide text-[#0077B6] font-semibold">Medicine</p>
+                  <h2 className="font-semibold text-lg text-[#03045E]">{item.name}</h2>
+                  <p className="text-[#0077B6] font-medium mt-1">
                     ₹{item.price} × {item.qty}
                   </p>
                 </div>
 
                 <button
                   onClick={() => handleDelete(item._id)}
-                  className="text-red-500 hover:text-red-700"
+                  className="text-[#f22b2b] hover:text-[#5e0303] p-2 rounded-lg hover:bg-[#f22b2b]/30 transition-colors"
                 >
                   <FaTrash />
                 </button>
@@ -147,9 +161,10 @@ const handleDelete = (_id) => {
             ))}
           </div>
 
-          <div className="mt-6 bg-white p-4 rounded-xl shadow flex justify-between items-center">
-            <p className="text-lg font-semibold">Payment Method</p>
+          <div className="mt-6 bg-white/70 border border-[#90E0EF] p-5 rounded-2xl shadow-lg flex justify-between items-center">
+            <p className="text-lg font-semibold text-[#03045E]">Payment Method</p>
             <select
+            className="bg-white border border-[#90E0EF] text-[#03045E] rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#00B4D8]"
             value={paymentMethod}
             onChange={(e)=>setPaymentMethod(e.target.value)}>
               <option value="COD">COD</option>
@@ -157,15 +172,17 @@ const handleDelete = (_id) => {
             </select>
             
           </div>
-          <div className="mt-6 bg-white p-4 rounded-xl shadow flex justify-between items-center">
-            <p className="text-lg font-semibold">Total: ₹{total}</p>
-            <button className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700"
+          <div className="mt-6 bg-white/70 border border-[#90E0EF] p-5 rounded-2xl shadow-lg flex justify-between items-center">
+            <p className="text-xl font-bold text-[#03045E]">Total: ₹{total}</p>
+            <button className="bg-[#0077B6] text-white px-6 py-2 rounded-lg hover:bg-[#00B4D8] transition-colors font-semibold"
             onClick={handleCheckout}>
               Checkout
             </button>
           </div>
         </>
       )}
+      </div>
+      </div>
     </div>
   );
 }

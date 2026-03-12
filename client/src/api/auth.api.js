@@ -15,3 +15,8 @@ export const googleLoginAPI = async (data) => {
   const res = await api.post("/auth/google", data);
   return res.data;
 };
+
+export const changePasswordAPI = async (data) => {
+  const res = await api.put("/auth/change-password", data);
+  return res.data;
+};

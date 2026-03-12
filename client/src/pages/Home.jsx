@@ -38,21 +38,21 @@ const [medicinesData,setMedicinesData]=useState([])
     <div className="p-6 px-18 min-h-screen
         bg-[url(/image.png)]
         bg-repeat
-        bg-top" style={{backgroundColor:'#1c3c71'}}>
+      bg-top" style={{backgroundColor:'#03045E'}}>
       {/* Search Bar */}
       <input
         type="text"
         placeholder="Search medicines..."
         value={searchQuery}
         onChange={(e) => setSearchQuery(e.target.value)}
-        className="w-full p-3 mb-6 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-      style={{backgroundColor:'white'}}
+        className="w-full p-3 mb-6 border border-[#90E0EF] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#00B4D8]"
+      style={{backgroundColor:'#CAF0F8'}}
       />
       
 
       {/* Results */}
       {filteredMedicines.length === 0 ? (
-        <p className="text-gray-500 text-center">
+        <p className="text-[#90E0EF] text-center">
           No medicines found
         </p>
       ) : (

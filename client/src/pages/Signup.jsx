@@ -84,8 +84,8 @@ const handleGoogleLogin = async () => {
       {/* 🔮 Animated Background */}
       <div className="absolute inset-0 z-0">
         <LightPillar
-         topColor="#467f95"
-          bottomColor="#8fd3b7"
+         topColor="#0077B6"
+          bottomColor="#90E0EF"
           intensity={2.0}
           rotationSpeed={0.6}
           glowAmount={0.002}
@@ -100,17 +100,22 @@ const handleGoogleLogin = async () => {
 
       {/* 🧾 Signup Content */}
       <div className="relative z-10 min-h-screen flex items-center justify-center">
-        <div className=" flex bg-white/90 backdrop-blur-md p-8 rounded-xl  shadow-lg w-full max-w-4xl justify-between">
+        <div className="w-full max-w-5xl bg-[#CAF0F8] border border-[#90E0EF] p-6 md:p-8 rounded-2xl shadow-2xl">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-start">
 
-           <div className="flex justify-center items-center flex-col mb-6">
-            <h2 className="text-2xl font-bold text-center" style={{color:'#184473'}}>
-              Create Account now  
+           <div className="rounded-2xl border border-[#90E0EF] bg-white/80 p-6 flex justify-center items-center flex-col mb-2 lg:mb-0">
+            <h2 className="text-sm uppercase tracking-wide font-semibold text-center text-[#0077B6]">
+              Join MediQuick
             </h2>
-            <img src="./logo.png" className="h-80 w-80" />
+            <p className="text-2xl font-bold text-center mt-2" style={{color:'#03045E'}}>
+              Create Account now  
+            </p>
+            <img src="/newLogo.jpeg" className="h-48 md:h-56 w-auto mt-4 rounded-xl border border-[#90E0EF]" />
+            <p className="text-[#0077B6] text-sm mt-4 text-center">Get medicines delivered fast and securely.</p>
           </div>
 
           {/* Role Selection */}
-          <div>
+          <div className="rounded-2xl border border-[#90E0EF] bg-white/70 p-5 md:p-6">
           <div className="flex gap-4 mb-4">
             {["customer"].map((r) => (
               <button
@@ -119,9 +124,9 @@ const handleGoogleLogin = async () => {
                 className={`flex-1 py-2 rounded-lg border transition ${
                   role === r
                     ? "text-white"
-                    : "bg-gray-100"
+                    : "bg-white text-[#03045E]"
                 }`}
-                style={role === r ? { backgroundColor: "#467f95" } : null}
+                style={role === r ? { backgroundColor: "#0077B6" } : null}
               >
                 {r.charAt(0).toUpperCase() + r.slice(1)}
               </button>
@@ -133,12 +138,12 @@ const handleGoogleLogin = async () => {
             <input
             name="name"
               placeholder="Full Name"
-              className="p-3 border rounded-lg"
+              className="p-3 border border-[#90E0EF] rounded-xl bg-white text-[#03045E] focus:outline-none focus:ring-2 focus:ring-[#00B4D8]"
               // value={formData.name}
               onChange={handleChange}
             />
 
-            <select className="p-3 border rounded-lg"
+            <select className="p-3 border border-[#90E0EF] rounded-xl bg-white text-[#03045E] focus:outline-none focus:ring-2 focus:ring-[#00B4D8]"
             name="gender"
               //  value={formData.gender}
               onChange={handleChange}>
@@ -152,7 +157,7 @@ const handleGoogleLogin = async () => {
               type="tel"
               name="phone"
               placeholder="Mobile Number"
-              className="p-3 border rounded-lg"
+              className="p-3 border border-[#90E0EF] rounded-xl bg-white text-[#03045E] focus:outline-none focus:ring-2 focus:ring-[#00B4D8]"
                 //  value={formData.phone}
               onChange={handleChange}
             />
@@ -161,7 +166,7 @@ const handleGoogleLogin = async () => {
               type="email"
               name="email"
               placeholder="Email"
-              className="p-3 border rounded-lg"
+              className="p-3 border border-[#90E0EF] rounded-xl bg-white text-[#03045E] focus:outline-none focus:ring-2 focus:ring-[#00B4D8]"
                 //  value={formData.email}
               onChange={handleChange}
             />
@@ -169,7 +174,7 @@ const handleGoogleLogin = async () => {
             <textarea
               placeholder="Address"
               name="address"
-              className="p-3 border rounded-lg md:col-span-2"
+              className="p-3 border border-[#90E0EF] rounded-xl bg-white text-[#03045E] focus:outline-none focus:ring-2 focus:ring-[#00B4D8] md:col-span-2"
                 //  value={formData.address}
               onChange={handleChange}
             />
@@ -178,7 +183,7 @@ const handleGoogleLogin = async () => {
               type="password"
               name="password"
               placeholder="Password"
-              className="p-3 border rounded-lg"
+              className="p-3 border border-[#90E0EF] rounded-xl bg-white text-[#03045E] focus:outline-none focus:ring-2 focus:ring-[#00B4D8]"
                 //  value={formData.password}
               onChange={handleChange}
             />
@@ -188,15 +193,15 @@ const handleGoogleLogin = async () => {
               name="confirmPassword"
             
               placeholder="Confirm Password"
-              className="p-3 border rounded-lg"
+              className="p-3 border border-[#90E0EF] rounded-xl bg-white text-[#03045E] focus:outline-none focus:ring-2 focus:ring-[#00B4D8]"
                 //  value={formData.confirmPassword}
               onChange={handleChange}
             />
           </form>
 
           <button
-            className="mt-6 w-full text-white py-3 rounded-lg"
-            style={{ backgroundColor: "#467f95" }}
+            className="mt-6 w-full text-white py-3 rounded-xl font-semibold hover:bg-[#00B4D8] transition-colors"
+            style={{ backgroundColor: "#0077B6" }}
             onClick={handleSubmit}
             disabled={loading}
           >
@@ -204,17 +209,18 @@ const handleGoogleLogin = async () => {
           </button>
   <button
   onClick={handleGoogleLogin}
-  className="w-full mt-4 border flex items-center justify-center gap-3 py-3 rounded-lg hover:bg-gray-100 hover:cursor-pointer"
+  className="w-full mt-4 border border-[#90E0EF] bg-white flex items-center justify-center gap-3 py-3 rounded-xl hover:bg-[#CAF0F8] hover:cursor-pointer transition-colors"
 >
   <img src="/google-logo.png" className="h-5" />
   Continue with Google
 </button>
           <p className="text-sm text-center mt-4">
             Already have an account?{" "}
-            <a href="/login" className="text-blue-600 font-medium">
+            <a href="/login" className="text-[#0077B6] font-medium">
               Login
             </a>    
           </p>
+          </div>
           </div>
         </div>
       </div>

@@ -45,27 +45,33 @@ const handleAddMedicine = async (e) => {
 
 
   return (
-    <div className=" flex justify-between align-middle">
+    <div className="min-h-screen bg-[#03045E] flex justify-between align-middle">
       <AdminSidebar/>
-      <div className="flex-1">
-      <h1 className="text-2xl font-bold mb-6 text-center mt-6 ">Add Medicine</h1>
+      <div className="flex-1 p-6 md:p-8">
+      <h1 className="text-3xl md:text-4xl font-bold mb-6 text-[#CAF0F8] tracking-tight">Add Medicine</h1>
 
-      <form className="space-y-4 bg-white p-6 rounded-xl shadow">
-        <input placeholder="Medicine Name" className="w-full p-3 border rounded" onChange={(e)=>setName(e.target.value)}
+      <div className="bg-[#CAF0F8] border border-[#90E0EF] p-6 md:p-8 rounded-2xl shadow-2xl">
+        <div className="rounded-2xl border border-[#90E0EF] bg-white/80 p-5 md:p-6 mb-6">
+          <p className="text-sm font-medium text-[#0077B6]">Create Product</p>
+          <p className="text-2xl md:text-3xl font-bold text-[#03045E]">Medicine Details</p>
+        </div>
+
+      <form className="space-y-4 bg-white/70 border border-[#90E0EF] p-6 rounded-2xl shadow-lg">
+        <input placeholder="Medicine Name" className="w-full p-3 border border-[#90E0EF] rounded-xl text-[#03045E] focus:outline-none focus:ring-2 focus:ring-[#00B4D8]" onChange={(e)=>setName(e.target.value)}
         value={name}/>
-        <textarea placeholder="Description" className="w-full p-3 border rounded" onChange={(e)=>setDesc(e.target.value)}
+        <textarea placeholder="Description" className="w-full p-3 border border-[#90E0EF] rounded-xl text-[#03045E] focus:outline-none focus:ring-2 focus:ring-[#00B4D8]" onChange={(e)=>setDesc(e.target.value)}
           value={description}/>
-        <input placeholder="Price" type="number" className="w-full p-3 border rounded" onChange={(e)=>setPrice(e.target.value)}
+        <input placeholder="Price" type="number" className="w-full p-3 border border-[#90E0EF] rounded-xl text-[#03045E] focus:outline-none focus:ring-2 focus:ring-[#00B4D8]" onChange={(e)=>setPrice(e.target.value)}
         value={price}/>
-        <input placeholder="Stock" type="number" className="w-full p-3 border rounded" onChange={(e)=>setStock(e.target.value)}
+        <input placeholder="Stock" type="number" className="w-full p-3 border border-[#90E0EF] rounded-xl text-[#03045E] focus:outline-none focus:ring-2 focus:ring-[#00B4D8]" onChange={(e)=>setStock(e.target.value)}
         value={stock}/>
         {preview && (
   <div className="mt-3">
-    <p className="text-sm text-gray-500 mb-1">Image Preview</p>
+    <p className="text-sm text-[#0077B6] mb-1">Image Preview</p>
     <img
       src={preview}
       alt="Medicine preview"
-      className="h-40 w-full object-contain rounded border"
+      className="h-40 w-full object-contain rounded-xl border border-[#90E0EF] bg-white"
     />
   </div>
 )}
@@ -92,11 +98,11 @@ const handleAddMedicine = async (e) => {
     className="
       flex items-center justify-center gap-3
       w-full px-4 py-3
-      border-2 border-dashed border-gray-300
-      rounded-lg cursor-pointer
-      text-gray-600
-      hover:border-[#1c3c71]
-      hover:text-[#1c3c71]
+      border-2 border-dashed border-[#90E0EF]
+      rounded-xl cursor-pointer
+      text-[#0077B6]
+      hover:border-[#03045E]
+      hover:text-[#03045E]
       transition
     "
   >
@@ -105,11 +111,12 @@ const handleAddMedicine = async (e) => {
 </div>
 
 
-        <button className="bg-[#1c3c71] text-white w-full py-3 rounded-lg"
+        <button className="bg-[#0077B6] text-white w-full py-3 rounded-xl hover:bg-[#00B4D8] transition-colors font-semibold"
         onClick={handleAddMedicine}>
          {loading? 'Adding Medicine , Please Wait ....': 'Add Medicine' }
         </button>
       </form>
+      </div>
       </div>
     </div>
   );

@@ -30,7 +30,7 @@ export default function App() {
   return (
     <>
     <ClickSpark
-     sparkColor='#1c3c71'
+     sparkColor='#03045E'
   sparkSize={10}
   sparkRadius={15}
   sparkCount={8}
